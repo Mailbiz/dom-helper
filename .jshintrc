@@ -67,13 +67,7 @@
   "wsh": false,
   "yui": false,
   "predef": [
-    "_",
-    "app",
-    "ko",
-    "browsingContext",
-    "JSResource",
-    "MediaEnlargerDS",
-    "setMasks",
+    "HTMLDocument",
     "chrome"
   ]
 }

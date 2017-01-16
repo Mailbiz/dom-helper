@@ -16,6 +16,42 @@
 		};
 	}
 
+	if (!window.addEventListener) {
+		(function(WindowPrototype, DocumentPrototype, ElementPrototype, addEventListener, removeEventListener, dispatchEvent, registry) {
+			WindowPrototype[addEventListener] = DocumentPrototype[addEventListener] = ElementPrototype[addEventListener] = function(type, listener) {
+				var target = this;
+
+				registry.unshift([target, type, listener, function(event) {
+					event.currentTarget = target;
+					event.preventDefault = function() {
+						event.returnValue = false;
+					};
+					event.stopPropagation = function() {
+						event.cancelBubble = true;
+					};
+					event.target = event.srcElement || target;
+
+					listener.call(target, event);
+				}]);
+
+				this.attachEvent('on' + type, registry[0][3]);
+			};
+
+			WindowPrototype[removeEventListener] = DocumentPrototype[removeEventListener] = ElementPrototype[removeEventListener] = function(type, listener) {
+				for (var index = 0, register; register = registry[index]; ++index) {
+					if (register[0] === this && register[1] === type && register[2] === listener) {
+						return this.detachEvent('on' + type, registry.splice(index, 1)[0][3]);
+					}
+				}
+			};
+
+			WindowPrototype[dispatchEvent] = DocumentPrototype[dispatchEvent] = ElementPrototype[dispatchEvent] = function(eventObject) {
+				return this.fireEvent('on' + eventObject.type, eventObject);
+			};
+		})(Window.prototype, HTMLDocument.prototype, Element.prototype, 'addEventListener', 'removeEventListener', 'dispatchEvent', []);
+	}
+	// End Polyfill
+
 	function noop() {}
 
 	function DomHelper(list) {
@@ -27,7 +63,7 @@
 		this.length = this.list.length;
 	}
 
-	DomHelper.prototype._apply = function(action) {
+	DomHelper.prototype._applyEach = function(action) {
 		var count = this.list.length;
 		for (var i = 0; i < count; ++i) {
 			var item = this.list[i];
@@ -40,12 +76,12 @@
 		return this;
 	};
 	DomHelper.prototype.each = function(callback) {
-		return this._apply(callback || noop);
+		return this._applyEach(callback || noop);
 	};
 	DomHelper.prototype.closest = function(selector) {
-		var firstEl = this.first();
-		if (firstEl) {
-			var el = firstEl.closest(selector);
+		var $el = this.first();
+		if ($el) {
+			var el = $el.closest(selector);
 			return $(el);
 		}
 		return new DomHelper();
@@ -56,18 +92,18 @@
 				el.addEventListener(eventName, callback, false);
 			}
 		};
-		return this._apply(action);
+		return this._applyEach(action);
 	};
 	DomHelper.prototype.off = function(eventName, callback) {
 		var action = function(el) {
 			el.removeEventListener(eventName, callback, false);
 		};
-		return this._apply(action);
+		return this._applyEach(action);
 	};
 	DomHelper.prototype.find = function(selector) {
-		var firstEl = this.first();
-		if (firstEl) {
-			var el = firstEl.querySelectorAll(selector);
+		var $el = this.first();
+		if ($el) {
+			var el = $el.querySelectorAll(selector);
 			if (el.length) {
 				return new DomHelper([].slice.call(el));
 			}
@@ -78,17 +114,17 @@
 		var action = function(el) {
 			el.style.display = 'hide';
 		};
-		return this._apply(action);
+		return this._applyEach(action);
 	};
 	DomHelper.prototype.show = function() {
 		var action = function(el) {
 			el.style.display = 'block';
 		};
-		return this._apply(action);
+		return this._applyEach(action);
 	};
 	DomHelper.prototype.hasClass = function(c) {
-		var firstEl = this.first();
-		return firstEl.className && new RegExp('(\\s|^)' + c + '(\\s|$)').test(firstEl.className);
+		var $el = this.first();
+		return $el.className && new RegExp('(\\s|^)' + c + '(\\s|$)').test($el.className);
 	};
 	DomHelper.prototype.addClass = function(c) {
 		var action = function(el) {
@@ -98,23 +134,23 @@
 			}
 			el.className = (el.className + ' ' + c).replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
 		};
-		return this._apply(action);
+		return this._applyEach(action);
 	};
 	DomHelper.prototype.removeClass = function(c) {
 		var action = function(el) {
 			var re = new RegExp('(^|\\s)' + c + '(\\s|$)', 'g');
 			el.className = el.className.replace(re, '$1').replace(/\s+/g, ' ').replace(/(^ | $)/g, '');
 		};
-		return this._apply(action);
+		return this._applyEach(action);
 	};
 	DomHelper.prototype.val = function(newVal) {
-		var firstEl = this.first(),
+		var $el = this.first(),
 			val = null;
-		if (firstEl) {
+		if ($el) {
 			if (newVal) {
-				firstEl.value = newVal;
+				$el.value = newVal;
 			} else {
-				val = firstEl.value;
+				val = $el.value;
 			}
 		}
 		return val;
