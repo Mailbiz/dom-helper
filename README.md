@@ -2,7 +2,7 @@
 
 *Proof of Concept - Don't use in production*
 
-This project was created in pure JS
+This project was created in pure JS and is a lightweight alternative to jQuery.
 
 
 ## Build
