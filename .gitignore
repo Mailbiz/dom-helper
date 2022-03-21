@@ -69,7 +69,7 @@ trackers/browser-tracker/temp/
 trackers/node-tracker/temp/
 
 # Distribution files
-dist
+# dist
 
 # Test files
 trackers/javascript-onsite-tag/test/pages/*.js
