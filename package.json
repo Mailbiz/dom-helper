@@ -2,17 +2,35 @@
   "name": "dom-helper",
   "private": false,
   "description": "Lightweight js lib",
-  "version": "0.0.1",
+  "version": "0.2.0",
+  "browser": "dist/dom-helper.js",
   "scripts": {
-    "build": "gulp build",
-    "start": "gulp"
+    "build": "rollup -c --silent --failAfterWarnings",
+    "build:watch": "npm run build -- --watch",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-cli": "^1.2.1",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.5.3",
-    "gulp-util": "^3.0.6",
-    "gulp-watch": "^4.1.0"
+    "@ampproject/rollup-plugin-closure-compiler": "^0.27.0",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^14.6.0",
+    "husky": "^7.0.0",
+    "lodash": "^4.17.21",
+    "pretty-quick": "^3.1.3",
+    "rollup": "^2.41.1",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-license": "^2.2.0",
+    "rollup-plugin-sizes": "^1.0.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^2.0.5",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.3.5"
   }
 }

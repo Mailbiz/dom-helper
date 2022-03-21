@@ -1,3 +1,7 @@
+#-------------------------------------------------------------------------------------------------------------------
+# Keep this section in sync with .gitignore
+#-------------------------------------------------------------------------------------------------------------------
+
 # Logs
 *.log
 npm-debug.log*
@@ -64,20 +68,39 @@ common/temp/
 common/autoinstallers/*/.npmrc
 **/.rush/temp/
 
-# API Extractor
-trackers/browser-tracker/temp/
-trackers/node-tracker/temp/
-
-# Distribution files
-dist
-
 # Test files
-trackers/javascript-onsite-tag/test/pages/*.js
-trackers/javascript-onsite-tag/test/local/serve/
+trackers/browser-tracker/test/pages/*.js
+trackers/browser-tracker/test/local/serve/
 
 # Generated tag
-trackers/javascript-onsite-tag/tags/tag.min.js
+trackers/browser-tracker/tags/tag.min.js
 
 # IDE files
 .idea/
 .DS_Store
+
+#-------------------------------------------------------------------------------------------------------------------
+# Prettier-specific overrides
+#-------------------------------------------------------------------------------------------------------------------
+
+# Rush files
+common/changes/
+common/scripts/
+common/config/
+CHANGELOG.*
+
+# Package manager files
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+shrinkwrap.json
+
+# Build outputs
+dist
+lib
+tags
+
+tracker.js
+
+# Prettier reformats code blocks inside Markdown, which affects rendered output
+*.md
