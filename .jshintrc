@@ -66,8 +66,5 @@
   "worker": false,
   "wsh": false,
   "yui": false,
-  "predef": [
-    "HTMLDocument",
-    "chrome"
-  ]
+  "predef": ["HTMLDocument", "chrome"]
 }
