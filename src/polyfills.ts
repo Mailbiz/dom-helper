@@ -8,19 +8,15 @@ interface Element {
 	fireEvent(name: string, ev: any): void;
 }
 
-type DocumentPrototype = {
-	addEventListener: Function;
-	removeEventListener: Function;
-} & Document;
-
+/*eslint-disable */
 if (window.Element && !Element.prototype.closest) {
 	Element.prototype.closest = function (s: string) {
-		var matches = (document || this.ownerDocument).querySelectorAll(s),
-			i,
-			el = this;
+		const matches = (document || this.ownerDocument).querySelectorAll(s);
+		let i;
+		let el = this;
 		do {
 			i = matches.length;
-			while (--i >= 0 && matches.item(i) !== el) {} //jshint ignore: line
+			while (--i >= 0 && matches.item(i) !== el) {} //eshint ignore: line
 		} while (i < 0 && (el = el.parentElement as Element));
 		return el;
 	};
@@ -72,8 +68,8 @@ if (!Element.prototype.matches) {
 
 	if (!Element.prototype.matches) {
 		Element.prototype.matches = function (s: string) {
-			var matches = (document || this.ownerDocument).querySelectorAll(s),
-				i = matches.length;
+			const matches = (document || this.ownerDocument).querySelectorAll(s);
+			let i = matches.length;
 			while (--i >= 0 && matches.item(i) !== this) {}
 			return i > -1;
 		};

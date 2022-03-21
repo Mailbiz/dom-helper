@@ -16,8 +16,8 @@ declare global {
 }
 
 function extend(first: { [x: string]: any }, second: { [x: string]: any }) {
-	for (var secondProp in second) {
-		var secondVal = second[secondProp];
+	for (const secondProp in second) {
+		const secondVal = second[secondProp];
 		// Is this value an object?  If so, iterate over its properties, copying them over
 		if (secondVal && Object.prototype.toString.call(secondVal) === '[object Object]') {
 			first[secondProp] = first[secondProp] || {};
@@ -30,7 +30,7 @@ function extend(first: { [x: string]: any }, second: { [x: string]: any }) {
 }
 
 function typeOf(value: any) {
-	var s: string = typeof value;
+	let s: string = typeof value;
 	if (s === 'object') {
 		if (value) {
 			if (value instanceof Array) {
@@ -47,13 +47,13 @@ function noop() {}
 
 // AJAX
 function sendRequest(url: string, ajaxData: any, postData: any) {
-	var onErrror = ajaxData.error || noop;
-	var onSuccess = ajaxData.success || noop;
-	var onComplete = ajaxData.complete || noop;
+	const onErrror = ajaxData.error || noop;
+	const onSuccess = ajaxData.success || noop;
+	const onComplete = ajaxData.complete || noop;
 
-	var req = createXMLHTTPObject();
+	const req = createXMLHTTPObject();
 	if (!req) return;
-	var method = postData ? 'POST' : 'GET';
+	const method = postData ? 'POST' : 'GET';
 	req.open(method, url, true);
 	// Setting the user agent is not allowed in most modern browsers It was
 	// a requirement for some Internet Explorer versions a long time ago.
@@ -90,14 +90,14 @@ function sendRequest(url: string, ajaxData: any, postData: any) {
 
 function tryParseResponse(req: any) {
 	try {
-		var jsonResponse = JSON.parse(req.responseText);
+		const jsonResponse = JSON.parse(req.responseText);
 		return jsonResponse;
 	} catch ($e) {
 		return req.responseText;
 	}
 }
 
-var XMLHttpFactories = [
+const XMLHttpFactories = [
 	function () {
 		return new XMLHttpRequest();
 	},
@@ -119,8 +119,8 @@ var XMLHttpFactories = [
 ];
 
 function createXMLHTTPObject(): XMLHttpRequest {
-	var xmlhttp = null;
-	for (var i = 0; i < XMLHttpFactories.length; i++) {
+	let xmlhttp = null;
+	for (let i = 0; i < XMLHttpFactories.length; i++) {
 		try {
 			xmlhttp = XMLHttpFactories[i]();
 		} catch (e) {
@@ -144,10 +144,10 @@ function domReady(callBack: any) {
 
 // loadScript
 function loadScript(u: string, async?: boolean) {
-	var d = document;
-	var t = 'script';
-	var o = d.createElement(t) as HTMLScriptElement;
-	var s = d.getElementsByTagName(t)[0] as HTMLScriptElement;
+	const d = document;
+	const t = 'script';
+	const o = d.createElement(t) as HTMLScriptElement;
+	const s = d.getElementsByTagName(t)[0] as HTMLScriptElement;
 	o.src = u;
 	o.async = async ?? true;
 	(s.parentNode as HTMLScriptElement).insertBefore(o, s);
@@ -161,8 +161,8 @@ function getQueryParameter(name: string, url?: string) {
 	}
 
 	name = name.replace(/[\[\]]/g, '\\$&');
-	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
-	var results = regex.exec(url);
+	const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+	const results = regex.exec(url);
 	if (!results) {
 		return null;
 	}
@@ -174,12 +174,12 @@ function getQueryParameter(name: string, url?: string) {
 // END getQueryParameter
 
 const dataStorager = (function () {
-	var lastId = 0;
-	var store: Record<number, unknown> = {};
+	let lastId = 0;
+	const store: Record<number, unknown> = {};
 
 	return {
 		set: function (element: Node, info: any) {
-			let id: number = 0;
+			let id = 0;
 			if (element.myCustomDataTag === undefined) {
 				id = lastId++;
 				element.myCustomDataTag = id;
@@ -352,7 +352,7 @@ class DomHelper implements IDomHelper {
 	attr(key: string, val?: string) {
 		const $el = this.first() as HTMLElement;
 		if (!$el) {
-			return;
+			return undefined;
 		}
 		if (!val) {
 			return $el.getAttribute(key);
@@ -365,7 +365,7 @@ class DomHelper implements IDomHelper {
 	append(obj: Node | string) {
 		const $el = this.first() as HTMLElement;
 		if (!$el) {
-			return;
+			return undefined;
 		}
 		if (typeof obj === 'string') {
 			$el.innerHTML += obj.toString();
@@ -378,7 +378,7 @@ class DomHelper implements IDomHelper {
 	html(html?: string): string | void {
 		const $el = this.first() as HTMLElement;
 		if (!$el) {
-			return;
+			return undefined;
 		}
 		const innerHtml = $el.innerHTML;
 		if (!html) {
@@ -391,7 +391,7 @@ class DomHelper implements IDomHelper {
 	outerHtml() {
 		const $el = this.first() as HTMLElement;
 		if (!$el) {
-			return;
+			return undefined;
 		}
 		return $el.outerHTML;
 	}
@@ -399,7 +399,7 @@ class DomHelper implements IDomHelper {
 	remove() {
 		const $el = this.first() as HTMLElement;
 		if (!$el || !$el.parentNode) {
-			return;
+			return undefined;
 		}
 
 		$el.parentNode.removeChild($el);
@@ -433,8 +433,8 @@ $constructor.loadScript = loadScript;
 $constructor.getQueryParameter = getQueryParameter;
 
 $constructor.ajax = function (ajaxData: Record<string, any>) {
-	var url = ajaxData.url;
-	var postData = typeOf(ajaxData.type) === 'string' && ajaxData.type.toLowerCase() === 'post' ? ajaxData.data : null;
+	const url = ajaxData.url;
+	const postData = typeOf(ajaxData.type) === 'string' && ajaxData.type.toLowerCase() === 'post' ? ajaxData.data : null;
 
 	return sendRequest(url, ajaxData, postData);
 };
