@@ -59,4 +59,6 @@ export interface IDomHelperInitializer {
 	loadScript(u: string, async?: boolean): void;
 
 	getQueryParameter(name: string, url?: string): string | null;
+
+	ajax(ajaxData: Record<string, any>): void;
 }
