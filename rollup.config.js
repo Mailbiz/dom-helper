@@ -26,6 +26,6 @@ export default [
 		input: './src/index.ts',
 		plugins: plugins,
 		treeshake: { moduleSideEffects: [] },
-		output: [{ file: pkg.browser, format: 'iife', sourcemap: false }],
+		output: [{ file: pkg.browser, format: 'es', sourcemap: false }],
 	},
 ];
