@@ -87,4 +87,4 @@ declare namespace $constructor {
     var getQueryParameter: (name: string, url?: string) => string;
     var ajax: (ajaxData: Record<string, any>) => void;
 }
-export { $constructor };
+export { IDomHelperInitializer, IDomHelper, CallbackFunction, $constructor };

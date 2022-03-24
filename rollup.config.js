@@ -21,30 +21,11 @@ const plugins = [
 	filesize({ showMinifiedSize: false, showBeforeSizes: 'build' }),
 ];
 
-const integrationPlugins = [
-	json(),
-	nodeResolve({ browser: true }),
-	commonjs(),
-	ts({ tsconfig: './tsconfig.json' }),
-	compiler(),
-	terser(),
-	cleanup({ comments: 'none' }),
-	sizes(),
-	filesize({ showMinifiedSize: false, showBeforeSizes: 'build' }),
-];
-
 export default [
 	{
 		input: './src/index.ts',
 		plugins: plugins,
 		treeshake: { moduleSideEffects: [] },
-		output: [{ file: pkg.browser, format: 'iife', sourcemap: false }],
-	},
-
-	{
-		input: './src/integration.ts',
-		plugins: integrationPlugins,
-		// treeshake: { moduleSideEffects: [] },
-		output: [{ file: 'dist/integration.min.js', format: 'iife', sourcemap: false }],
+		output: [{ file: pkg.browser, format: 'es', sourcemap: false }],
 	},
 ];
