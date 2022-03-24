@@ -5,10 +5,12 @@
   "version": "0.2.0",
   "browser": "dist/dom-helper.js",
   "scripts": {
+    "test": "echo 1",
     "build": "rollup -c --silent --failAfterWarnings",
-    "build:watch": "npm run build -- --watch",
+    "build:watch": "rollup -c --watch",
     "prettier": "prettier --write . && npm run lint-fix",
     "lint-fix": "eslint --fix src/",
+    "lint": "eslint src/",
     "prepare": "husky install"
   },
   "dependencies": {

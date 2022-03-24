@@ -1,0 +1,42 @@
+name: Pull Request Check
+
+on: pull_request
+
+jobs:
+  check:
+    runs-on: ubuntu-20.04
+
+    env:
+      BROWSERSLIST_IGNORE_OLD_DATA: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          cache: 'npm'
+
+      - name: Set Npm cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install
+        run: npm i
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
