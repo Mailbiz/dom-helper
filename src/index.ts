@@ -1,5 +1,7 @@
 import { IDomHelperInitializer, IDomHelper, CallbackFunction } from './types';
 
+export { IDomHelperInitializer, IDomHelper, CallbackFunction };
+
 declare global {
 	interface Window {
 		[key: string]: unknown;
@@ -406,7 +408,7 @@ class DomHelper implements IDomHelper {
 	}
 }
 
-function $constructor(selector?: any | any[]): DomHelper {
+export function $constructor(selector?: any | any[]): DomHelper {
 	let el;
 
 	if (typeOf(selector) === 'string') {
