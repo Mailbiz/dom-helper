@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Mailbiz/dom-helper/compare/v1.0.0...v1.0.1) (2022-03-25)
+
+
+### Bug Fixes
+
+* Add access scope in package.json ([b53c034](https://github.com/Mailbiz/dom-helper/commit/b53c0349155959e430171e473d2a1f48ba478f79))
+
 # 1.0.0 (2022-03-25)
 
 

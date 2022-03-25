@@ -2,7 +2,7 @@
   "name": "@mailbiz/dom-helper",
   "private": false,
   "description": "Lightweight js lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "browser": "dist/dom-helper.js",
   "scripts": {
     "test": "echo 1",
