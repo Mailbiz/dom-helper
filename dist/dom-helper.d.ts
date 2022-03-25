@@ -34,18 +34,14 @@ interface IDomHelperInitializer {
     ajax(ajaxData: Record<string, any>): void;
 }
 declare global {
-    interface Window {
-        [key: string]: unknown;
-        _mbz_: {
-            $: IDomHelperInitializer;
-        };
-    }
     interface Node {
         myCustomDataTag: any;
         closest(selectors: string): NodeList;
         matches(selector: string): boolean;
     }
 }
+// END AJAX
+// READY
 declare function domReady(callBack: any): void;
 declare class DomHelper implements IDomHelper {
     list: NodeList | Node[] | string[];

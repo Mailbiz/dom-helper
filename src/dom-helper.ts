@@ -3,13 +3,6 @@ import { IDomHelperInitializer, IDomHelper, CallbackFunction } from './types';
 export { IDomHelperInitializer, IDomHelper, CallbackFunction };
 
 declare global {
-	interface Window {
-		[key: string]: unknown;
-		_mbz_: {
-			$: IDomHelperInitializer;
-		};
-	}
-
 	interface Node {
 		myCustomDataTag: any;
 		closest(selectors: string): NodeList;
