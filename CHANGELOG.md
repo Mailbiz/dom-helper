@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Mailbiz/dom-helper/compare/v1.0.1...v1.0.2) (2022-03-25)
+
+
+### Bug Fixes
+
+* Remove global unused type _mbz_ ([374d6a4](https://github.com/Mailbiz/dom-helper/commit/374d6a4cd919f8e8aa188d6fd5afc25b98a38bd9))
+
 ## [1.0.1](https://github.com/Mailbiz/dom-helper/compare/v1.0.0...v1.0.1) (2022-03-25)
 
 
