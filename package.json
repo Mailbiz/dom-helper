@@ -4,6 +4,12 @@
   "description": "Lightweight js lib",
   "version": "1.0.2",
   "browser": "dist/dom-helper.js",
+  "main": "./dist/dom-helper.js",
+  "module": "./dist/dom-helper.module.js",
+  "types": "./dist/dom-helper.module.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo 1",
     "build": "rollup -c --silent --failAfterWarnings",

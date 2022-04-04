@@ -20,8 +20,15 @@ const plugins = [
 	sizes(),
 	filesize({ showMinifiedSize: false, showBeforeSizes: 'build' }),
 ];
+import { builtinModules } from 'module';
 
 export default [
+	{
+		input: './src/index.ts',
+		external: [...builtinModules, ...Object.keys(pkg.dependencies)],
+		plugins: [ts()],
+		output: [{ file: pkg.module, format: 'es', sourcemap: false }],
+	},
 	{
 		input: './src/index.ts',
 		plugins: plugins,
