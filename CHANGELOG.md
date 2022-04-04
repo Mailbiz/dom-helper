@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/Mailbiz/dom-helper/compare/v1.0.2...v1.0.3) (2022-04-04)
+
+
+### Bug Fixes
+
+* Fix types dist on module dist ([421b795](https://github.com/Mailbiz/dom-helper/commit/421b7955bf1f4447b6f37d13a0879d2d5c55c30e))
+
 ## [1.0.2](https://github.com/Mailbiz/dom-helper/compare/v1.0.1...v1.0.2) (2022-03-25)
 
 
