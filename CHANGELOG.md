@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/Mailbiz/dom-helper/compare/v1.0.3...v1.0.4) (2022-04-15)
+
+
+### Bug Fixes
+
+* Fix $constructor error passing an object instead of an array ([45ea96c](https://github.com/Mailbiz/dom-helper/commit/45ea96cf79ca0505065ec13b13e00910fa7f3431))
+
 ## [1.0.3](https://github.com/Mailbiz/dom-helper/compare/v1.0.2...v1.0.3) (2022-04-04)
 
 
