@@ -173,9 +173,7 @@ var DomHelper = /** @class */ (function () {
         this.list = [];
         if (typeof list === 'object') {
             // this.list = list; //NodeList
-            this.list = typeOf(list) === 'array'
-                ? list
-                : [list];
+            this.list = typeOf(list) === 'array' ? list : [list];
         }
         this.length = (_b = (_a = this.list) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0;
     }

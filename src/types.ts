@@ -32,7 +32,7 @@ export interface IDomHelper {
 
 	removeClass(c: string): IDomHelper;
 
-	val(c: string | number): string | undefined | null;
+	val(c?: string | number): string | undefined | null;
 
 	first(): any | undefined | null;
 

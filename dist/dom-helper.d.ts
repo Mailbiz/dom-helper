@@ -16,7 +16,7 @@ interface IDomHelper {
     hasClass(c: string): boolean;
     addClass(c: string): IDomHelper;
     removeClass(c: string): IDomHelper;
-    val(c: string | number): string | undefined | null;
+    val(c?: string | number): string | undefined | null;
     first(): any | undefined | null;
     attr(key: string, val?: string): any;
     append(obj: Node | string): any;
