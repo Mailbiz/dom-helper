@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/Mailbiz/dom-helper/compare/v1.0.4...v1.0.5) (2022-04-15)
+
+
+### Bug Fixes
+
+* Make val argument optional ([fcecc26](https://github.com/Mailbiz/dom-helper/commit/fcecc26a26abaaf22df9eec7053d8d34dd400157))
+
 ## [1.0.4](https://github.com/Mailbiz/dom-helper/compare/v1.0.3...v1.0.4) (2022-04-15)
 
 
