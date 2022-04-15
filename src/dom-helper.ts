@@ -40,7 +40,7 @@ function typeOf(value: any) {
 
 function noop() {}
 
-// AJAX
+//#endregion AJAX
 function sendRequest(url: string, ajaxData: any, postData: any) {
 	const onErrror = ajaxData.error || noop;
 	const onSuccess = ajaxData.success || noop;
@@ -125,9 +125,9 @@ function createXMLHTTPObject(): XMLHttpRequest {
 	}
 	return xmlhttp;
 }
-// END AJAX
+//#endregion
 
-// READY
+//#region READY
 function domReady(callBack: any) {
 	if (document.readyState === 'loading') {
 		return document.addEventListener('DOMContentLoaded', callBack);
@@ -135,9 +135,9 @@ function domReady(callBack: any) {
 
 	callBack();
 }
-// END READY
+//#endregion
 
-// loadScript
+//#region loadScript
 function loadScript(u: string, async?: boolean) {
 	const d = document;
 	const t = 'script';
@@ -147,9 +147,9 @@ function loadScript(u: string, async?: boolean) {
 	o.async = async ?? true;
 	(s.parentNode as HTMLScriptElement).insertBefore(o, s);
 }
-// END loadScript
+//#endregion
 
-// getQueryParameter
+//#region getQueryParameter
 function getQueryParameter(name: string, url?: string) {
 	if (!url) {
 		url = window.location.href;
@@ -166,7 +166,7 @@ function getQueryParameter(name: string, url?: string) {
 	}
 	return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
-// END getQueryParameter
+//#endregion
 
 const dataStorager = (function () {
 	let lastId = 0;
@@ -193,12 +193,14 @@ class DomHelper implements IDomHelper {
 	length: number;
 
 	constructor(list?: NodeList | Node[] | string[]) {
-		//this.list = [] as unknown as NodeList;
+		this.list = [] as unknown as NodeList;
 		if (typeof list === 'object') {
-			this.list = list; //NodeList
+			// this.list = list; //NodeList
+
+			this.list = typeOf(list) === 'array' ? list : ([list] as unknown as Node[]);
 		}
 
-		this.length = this.list.length;
+		this.length = this.list?.length ?? 0;
 	}
 
 	_applyEach(action: CallbackFunction): DomHelper {
