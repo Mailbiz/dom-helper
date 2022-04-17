@@ -243,7 +243,7 @@ var DomHelper = /** @class */ (function () {
     };
     DomHelper.prototype.find = function (selector) {
         var $el = this.first();
-        if ($el) {
+        if ($el && $el.querySelectorAll) {
             var el = $el.querySelectorAll(selector);
             if (el.length) {
                 return new DomHelper(el);
@@ -307,7 +307,7 @@ var DomHelper = /** @class */ (function () {
     };
     DomHelper.prototype.attr = function (key, val) {
         var $el = this.first();
-        if (!$el) {
+        if (!$el || !$el.getAttribute || !$el.setAttribute) {
             return undefined;
         }
         if (!val) {

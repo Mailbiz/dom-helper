@@ -279,7 +279,7 @@ class DomHelper implements IDomHelper {
 
 	find(selector: string) {
 		const $el = this.first() as HTMLElement;
-		if ($el) {
+		if ($el && $el.querySelectorAll) {
 			const el = $el.querySelectorAll(selector);
 			if (el.length) {
 				return new DomHelper(el);
@@ -348,7 +348,7 @@ class DomHelper implements IDomHelper {
 
 	attr(key: string, val?: string) {
 		const $el = this.first() as HTMLElement;
-		if (!$el) {
+		if (!$el || !$el.getAttribute || !$el.setAttribute) {
 			return undefined;
 		}
 		if (!val) {
