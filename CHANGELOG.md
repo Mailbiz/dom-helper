@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/Mailbiz/dom-helper/compare/v1.0.5...v1.0.6) (2022-04-17)
+
+
+### Bug Fixes
+
+* adjust .attr() and .find error with empty object ([b700c0a](https://github.com/Mailbiz/dom-helper/commit/b700c0a5828822637c07ddc0257641b38372f51d))
+* Transform default browser output to umd type ([a6e69a9](https://github.com/Mailbiz/dom-helper/commit/a6e69a9a7cfc2203efb5df4ae07bdedc7e78ad8e))
+
 ## [1.0.5](https://github.com/Mailbiz/dom-helper/compare/v1.0.4...v1.0.5) (2022-04-15)
 
 
