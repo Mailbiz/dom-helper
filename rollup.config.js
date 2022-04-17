@@ -22,6 +22,8 @@ const plugins = [
 ];
 import { builtinModules } from 'module';
 
+const pkgName = 'domHelper';
+
 export default [
 	{
 		input: './src/index.ts',
@@ -33,6 +35,6 @@ export default [
 		input: './src/index.ts',
 		plugins: plugins,
 		treeshake: { moduleSideEffects: [] },
-		output: [{ file: pkg.browser, format: 'es', sourcemap: false }],
+		output: [{ name: pkgName, file: pkg.browser, format: 'umd', sourcemap: false }],
 	},
 ];
