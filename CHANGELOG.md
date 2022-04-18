@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/Mailbiz/dom-helper/compare/v1.0.6...v1.0.7) (2022-04-18)
+
+
+### Bug Fixes
+
+* Fix NodeList check in $constructor ([8e9d7b3](https://github.com/Mailbiz/dom-helper/commit/8e9d7b3299b5c88f82a47fca8ccd499c8f862e42))
+
 ## [1.0.6](https://github.com/Mailbiz/dom-helper/compare/v1.0.5...v1.0.6) (2022-04-17)
 
 
