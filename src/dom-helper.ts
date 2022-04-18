@@ -193,11 +193,12 @@ class DomHelper implements IDomHelper {
 	length: number;
 
 	constructor(list?: NodeList | Node[] | string[]) {
-		this.list = [] as unknown as NodeList;
+		// this.list = [] as unknown as NodeList;
 		if (typeof list === 'object') {
 			// this.list = list; //NodeList
 
-			this.list = typeOf(list) === 'array' ? list : ([list] as unknown as Node[]);
+			this.list =
+				typeOf(list) === 'array' || list instanceof NodeList || list.length ? list : ([list] as unknown as Node[]);
 		}
 
 		this.length = this.list?.length ?? 0;

@@ -170,10 +170,12 @@ var DomHelper = /** @class */ (function () {
     function DomHelper(list) {
         var _a, _b;
         this.list = [];
-        this.list = [];
+        // this.list = [] as unknown as NodeList;
         if (typeof list === 'object') {
             // this.list = list; //NodeList
-            this.list = typeOf(list) === 'array' ? list : [list];
+            this.list = typeOf(list) === 'array' || list instanceof NodeList || list.length
+                ? list
+                : [list];
         }
         this.length = (_b = (_a = this.list) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0;
     }
