@@ -138,13 +138,16 @@ function domReady(callBack: any) {
 //#endregion
 
 //#region loadScript
-function loadScript(u: string, async?: boolean) {
+function loadScript(u: string, async?: boolean, nonce?: string) {
 	const d = document;
 	const t = 'script';
 	const o = d.createElement(t) as HTMLScriptElement;
 	const s = d.getElementsByTagName(t)[0] as HTMLScriptElement;
 	o.src = u;
 	o.async = async ?? true;
+	if (nonce) {
+		o.nonce = nonce;
+	}
 	(s.parentNode as HTMLScriptElement).insertBefore(o, s);
 }
 //#endregion
