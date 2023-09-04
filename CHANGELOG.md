@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Mailbiz/dom-helper/compare/v1.0.7...v1.1.0) (2023-09-04)
+
+
+### Features
+
+* add nonce parameter to loadScript method [MBUNI-1087] ([a78d871](https://github.com/Mailbiz/dom-helper/commit/a78d871cbaac9d5a60ae1cdde23941ff3d75f8cf))
+
 ## [1.0.7](https://github.com/Mailbiz/dom-helper/compare/v1.0.6...v1.0.7) (2022-04-18)
 
 
