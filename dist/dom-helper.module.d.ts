@@ -29,7 +29,7 @@ interface IDomHelperInitializer {
     ready(callBack: Function): void;
     extend(first: object, second: object): object;
     typeOf(value: any): string;
-    loadScript(u: string, async?: boolean): void;
+    loadScript(u: string, async?: boolean, nonce?: string): void;
     getQueryParameter(name: string, url?: string): string | null;
     ajax(ajaxData: Record<string, any>): void;
 }
@@ -79,7 +79,7 @@ declare namespace $constructor {
         [x: string]: any;
     };
     var typeOf: (value: any) => string;
-    var loadScript: (u: string, async?: boolean) => void;
+    var loadScript: (u: string, async?: boolean, nonce?: string) => void;
     var getQueryParameter: (name: string, url?: string) => string;
     var ajax: (ajaxData: Record<string, any>) => void;
 }

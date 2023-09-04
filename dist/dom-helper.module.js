@@ -122,13 +122,16 @@ function domReady(callBack) {
 }
 //#endregion
 //#region loadScript
-function loadScript(u, async) {
+function loadScript(u, async, nonce) {
     var d = document;
     var t = 'script';
     var o = d.createElement(t);
     var s = d.getElementsByTagName(t)[0];
     o.src = u;
     o.async = async !== null && async !== void 0 ? async : true;
+    if (nonce) {
+        o.nonce = nonce;
+    }
     s.parentNode.insertBefore(o, s);
 }
 //#endregion
@@ -173,9 +176,8 @@ var DomHelper = /** @class */ (function () {
         // this.list = [] as unknown as NodeList;
         if (typeof list === 'object') {
             // this.list = list; //NodeList
-            this.list = typeOf(list) === 'array' || list instanceof NodeList || list.length
-                ? list
-                : [list];
+            this.list =
+                typeOf(list) === 'array' || list instanceof NodeList || list.length ? list : [list];
         }
         this.length = (_b = (_a = this.list) === null || _a === void 0 ? void 0 : _a.length) !== null && _b !== void 0 ? _b : 0;
     }

@@ -56,7 +56,7 @@ export interface IDomHelperInitializer {
 
 	typeOf(value: any): string;
 
-	loadScript(u: string, async?: boolean): void;
+	loadScript(u: string, async?: boolean, nonce?: string): void;
 
 	getQueryParameter(name: string, url?: string): string | null;
 
